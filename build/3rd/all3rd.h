@@ -80,7 +80,6 @@
 #include "lheap.c"
 
 #define EXTEND_LUA_LIB_MAP(XX)            \
-	XX(lastar, luaopen_lastar)        \
 	XX(laoi, luaopen_laoi)            \
 	XX(lssock, luaopen_lssock)        \
 	XX(lcsock, luaopen_lcsock)        \
@@ -100,7 +99,6 @@
 	XX(lsinfo, luaopen_lsinfo)        \
 	XX(lskiplist, luaopen_lskiplist)  \
 	XX(lsproto, luaopen_lsproto)      \
-	XX(lpeg, luaopen_lpeg)            \
 	XX(ltrace, luaopen_ltrace)        \
 	XX(lcoredump, luaopen_lcoredump)  \
 	XX(lbs, luaopen_lbs)\
@@ -109,7 +107,7 @@
 
 
 
-static int luaopen_all3rd(lua_State *L)
+void luaopen_all3rd(lua_State *L)
 {
 	int top = lua_gettop(L);
 
@@ -118,8 +116,6 @@ static int luaopen_all3rd(lua_State *L)
 #undef XX
 
 	lua_settop(L, top);
-
-	return 0;
 }
 #endif // SLUA_3RD_LOADED
 

@@ -1232,6 +1232,7 @@ static const luaL_Reg xlualib[] = {
 	{NULL, NULL}
 };
 
+extern void luaopen_all3rd(lua_State* L);
 LUA_API void luaopen_xlua(lua_State *L) {
 	luaL_openlibs(L);
 	
@@ -1242,5 +1243,7 @@ LUA_API void luaopen_xlua(lua_State *L) {
 	luaL_register(L, "xlua", xlualib);
     lua_pop(L, 1);
 #endif
+
+	luaopen_all3rd(L);
 }
 
