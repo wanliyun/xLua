@@ -1,0 +1,16 @@
+SHA-1: 2ed7ca9cdec8373dd4657fc84769a2bebcc43ca2
+
+* Merge pull request #98 from t0350/fixspparse
+
+fix map parse info reuse
+
+Revision: 2ed7ca9cdec8373dd4657fc84769a2bebcc43ca2
+Author: 云风 <cloudwu@gmail.com>
+Date: 2020/12/14 10:22:31
+Message:
+Merge pull request #98 from t0350/fixspparse
+
+fix map parse info reuse
+----
+Modified: sprotoparser.lua
+
