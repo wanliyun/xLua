@@ -99,6 +99,7 @@
 	XX(lsinfo, luaopen_lsinfo)        \
 	XX(lskiplist, luaopen_lskiplist)  \
 	XX(lsproto, luaopen_lsproto)      \
+	XX(lpeg, luaopen_lpeg)            \
 	XX(ltrace, luaopen_ltrace)        \
 	XX(lcoredump, luaopen_lcoredump)  \
 	XX(lbs, luaopen_lbs)\
