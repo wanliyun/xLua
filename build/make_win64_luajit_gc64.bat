@@ -3,9 +3,6 @@
 ::call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvars64.bat"
-set LUAJIT_PATH=luajit-2.1.0b3
-md %LUAJIT_PATH%\src\3rd
-xcopy 3rd %LUAJIT_PATH%\src\3rd /s /h /d /y
 
 
 echo Swtich to x64 build env
