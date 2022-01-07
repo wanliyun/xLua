@@ -106,6 +106,21 @@ set ( LUA_SOCKET
     luasocket/udp.c 
 )
 
+
+#begin lua-pack
+if ( WIN32 )
+    set (PACK_SRC pack/lpack.c)
+    set_property(
+    SOURCE ${PACK_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+    )
+    set (THIRDPART_SRC ${THIRDPART_SRC} ${PACK_SRC})
+endif()
+#end lua-pack
+
+
 if ( WIN32 AND NOT CYGWIN )
     list (APPEND LUA_SOCKET luasocket/wsocket.c)
 else ( )
