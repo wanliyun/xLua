@@ -258,7 +258,7 @@ static const luaL_Reg R[] =
 	{NULL,	NULL}
 };
 
-int luaopen_pack(lua_State *L)
+LUA_API int luaopen_pack(lua_State *L)
 {
 #ifdef USE_GLOBALS
  lua_register(L,"bpack",l_pack);

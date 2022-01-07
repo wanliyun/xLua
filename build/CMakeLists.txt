@@ -109,14 +109,15 @@ set ( LUA_SOCKET
 
 #begin lua-pack
 if ( WIN32 )
-    set (PACK_SRC pack/lpack.c)
-    set_property(
-    SOURCE ${PACK_SRC}
-    APPEND
-    PROPERTY COMPILE_DEFINITIONS
-    LUA_LIB
+	message("Adding lpack.c")
+	set (LUA_PACK_SRC pack/lpack.c )
+	set_property(
+        SOURCE ${LUA_PACK_SRC}
+        APPEND
+        PROPERTY COMPILE_DEFINITIONS
+        LUA_LIB
     )
-    set (THIRDPART_SRC ${THIRDPART_SRC} ${PACK_SRC})
+	set (THIRDPART_SRC ${THIRDPART_SRC} ${LUA_PACK_SRC})
 endif()
 #end lua-pack
 
