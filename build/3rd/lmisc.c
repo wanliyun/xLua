@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "bresenham/bresenham.h"
 #include <ctype.h>
 // #include <lua.h>
 // #include <lauxlib.h>
@@ -87,29 +86,6 @@ static int pushpos2lua(void *data, int x, int y)
 	lua_rawseti(L, -2, udata->idx + 1);
 
 	return BH_CONTINUE;
-}
-
-static int lua__bresenham(lua_State *L)
-{
-	int ret;
-	struct bh_udata udata;
-	int ref = LUA_NOREF;
-	int sx = luaL_checkint(L, 1);
-	int sy = luaL_checkint(L, 2);
-	int ex = luaL_checkint(L, 3);
-	int ey = luaL_checkint(L, 4);
-	int max = luaL_optint(L, 5, -1);
-	if (lua_type(L, 6) == LUA_TFUNCTION) {
-		ref = luaL_ref(L, LUA_REGISTRYINDEX);
-	}
-	init_bh_udata(&udata, L, max, ref);
-	lua_newtable(L);
-	ret = bresenham_line(sx, sy, ex, ey, pushpos2lua, &udata);
-	lua_pushboolean(L, ret == 0);
-	if (ref != LUA_NOREF) {
-		luaL_unref(L, LUA_REGISTRYINDEX, ref);
-	}
-	return 2;
 }
 
 static int lua__gettimeofday(lua_State *L)
@@ -382,7 +358,6 @@ int luaopen_misc(lua_State* L)
 {
 	luaL_Reg lfuncs[] = {
 		{"gettimeofday", lua__gettimeofday},
-		{"bresenham", lua__bresenham},
 		{"checksum", lua__checksum},
 		{"loadstring", lua__source_loadstring},
 		{"base64_encode", lua__base64_encode},

@@ -70,7 +70,7 @@ if (USING_LUAJIT)
 else ()
 	set ( LUA_IDSIZE 120 CACHE STRING "gives the maximum size for the description of the source." )
 
-	configure_file ( ${LUA_SRC_PATH}/luaconf.h.in ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h )
+	configure_file ( ${LUA_SRC_PATH}/luaconf.h ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h )
 
 	include_directories(
 	    ${CMAKE_SOURCE_DIR}
@@ -105,22 +105,6 @@ set ( LUA_SOCKET
     luasocket/timeout.c
     luasocket/udp.c 
 )
-
-
-#begin lua-pack
-if ( WIN32 )
-	message("Adding lpack.c")
-	set (LUA_PACK_SRC pack/lpack.c )
-	set_property(
-        SOURCE ${LUA_PACK_SRC}
-        APPEND
-        PROPERTY COMPILE_DEFINITIONS
-        LUA_LIB
-    )
-	set (THIRDPART_SRC ${THIRDPART_SRC} ${LUA_PACK_SRC})
-endif()
-#end lua-pack
-
 
 if ( WIN32 AND NOT CYGWIN )
     list (APPEND LUA_SOCKET luasocket/wsocket.c)

@@ -17,22 +17,11 @@
 # include "astar/lastar.c"
 */
 
-# include "bresenham/bresenham.h"
-# include "bresenham/bresenham.c"
-# include "lssock.c"
 # include "lcsock.c"
-# include "aoi/aoi.h"
-# include "aoi/aoi.c"
-# include "aoi/laoi.c"
-# include "bit.c"
 # include "ldump.c"
 # include "lcjson/strbuf.c"
 # include "lcjson/lcjson.c"
 # include "lmsgpack.c"
-# include "kcp/ikcp.c"
-# include "kcp/lkcp.c"
-# include "lbitstring/bitstring.h"
-# include "lbitstring/lbitstring.c"
 /*# include "ludp.c" */
 # include "lfs.c"
 # include "lsinfo.c"
@@ -80,16 +69,12 @@
 #include "lheap.c"
 
 #define EXTEND_LUA_LIB_MAP(XX)            \
-	XX(laoi, luaopen_laoi)            \
-	XX(lssock, luaopen_lssock)        \
 	XX(lcsock, luaopen_lcsock)        \
 	XX(ldump, luaopen_ldump)          \
 	XX(msgpack, luaopen_msgpack)      \
 	XX(cjson, luaopen_cjson)          \
 	XX(misc, luaopen_misc)            \
-	XX(lbit, luaopen_lbit)            \
 	XX(luniq, luaopen_luniq)          \
-	XX(lkcp, luaopen_lkcp)            \
 	XX(proc, luaopen_proc)            \
 	XX(lhtimer, luaopen_lhtimer)      \
 	XX(lsqlite3, luaopen_lsqlite3)    \
@@ -102,7 +87,6 @@
 	XX(lpeg, luaopen_lpeg)            \
 	XX(ltrace, luaopen_ltrace)        \
 	XX(lcoredump, luaopen_lcoredump)  \
-	XX(lbs, luaopen_lbs)\
 	XX(llz4, luaopen_llz4)\
 	XX(lheap, luaopen_lheap)
 

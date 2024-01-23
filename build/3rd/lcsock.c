@@ -422,7 +422,7 @@ static int lua__lcs_recv(lua_State *L)
 	int rsz = 0;
 	int lastError;
 	sock_client_t * client = CHECK_CLIENT(L, 1);
-	size_t maxsz = luaL_optlong(L, 2, sizeof(tmp));
+	size_t maxsz = luaL_optinteger(L, 2, sizeof(tmp));
 	if (0 == client->connected) {
 		return luaL_error(L, "not connected");
 	}
