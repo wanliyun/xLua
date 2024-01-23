@@ -1,3 +1,4 @@
+rm -rf build64_54
 mkdir build64_54 & pushd build64_54
 cmake -DLUA_VERSION=5.4.6 -G "Visual Studio 17 2022" -A x64  ..
 popd

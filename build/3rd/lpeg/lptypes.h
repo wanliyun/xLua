@@ -1,7 +1,7 @@
 /*
-** $Id: lptypes.h,v 1.14 2015/09/28 17:17:41 roberto Exp $
+** $Id: lptypes.h $
 ** LPeg - PEG pattern matching for Lua
-** Copyright 2007-2015, Lua.org & PUC-Rio  (see 'lpeg.html' for license)
+** Copyright 2007-2019, Lua.org & PUC-Rio  (see 'lpeg.html' for license)
 ** written by Roberto Ierusalimschy
 */
 
@@ -9,40 +9,35 @@
 #define lptypes_h
 
 
-#if !defined(LPEG_DEBUG)
-#define NDEBUG
-#endif
-
 #include <assert.h>
 #include <limits.h>
 
-#define VERSION         "1.0.0"
+#include "lua.h"
+
+
+#define VERSION         "1.0.2"
 
 
 #define PATTERN_T	"lpeg-pattern"
 #define MAXSTACKIDX	"lpeg-maxstack"
 
 
-/*
-** compatibility with Lua 5.1
-*/
-#if (LUA_VERSION_NUM == 501)
 
-#define lp_equal	lua_equal
 
-#define lua_getuservalue	lua_getfenv
-#define lua_setuservalue	lua_setfenv
-
-#define lua_rawlen		lua_objlen
-
-#define luaL_setfuncs(L,f,n)	luaL_register(L,NULL,f)
-#define luaL_newlib(L,f)	luaL_register(L,"lpeg",f)
-
-#endif
-
+#if LUA_VERSION_NUM < 502
+# ifndef luaL_newlib
+#  define luaL_newlib(L,l) (lua_newtable(L), luaL_register(L,NULL,l))
+# endif
+# ifndef lua_setuservalue
+#  define lua_setuservalue(L, n) lua_setfenv(L, n)
+# endif
+# ifndef lua_getuservalue
+#  define lua_getuservalue(L, n) lua_getfenv(L, n)
+# endif
 
 #if !defined(lp_equal)
 #define lp_equal(L,idx1,idx2)  lua_compare(L,(idx1),(idx2),LUA_OPEQ)
+#endif
 #endif
 
 
@@ -52,9 +47,9 @@
 #endif
 
 
-/* maximum number of rules in a grammar */
+/* maximum number of rules in a grammar (limited by 'unsigned char') */
 #if !defined(MAXRULES)
-#define MAXRULES        1000
+#define MAXRULES        250
 #endif
 
 

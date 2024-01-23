@@ -37,56 +37,6 @@ static int gettimeofday(struct timeval *tp, void *tzp)
 # include <sys/time.h>
 #endif
 
-struct bh_udata {
-	lua_State *L;
-	int idx;
-	int ref;
-	size_t max;
-};
-
-static void init_bh_udata(struct bh_udata *udata,
-			  lua_State *L,
-			  int max, int ref)
-{
-	udata->L = L;
-	udata->max = max;
-	udata->ref = ref;
-	udata->idx = -1;
-}
-
-static int pushpos2lua(void *data, int x, int y)
-{
-	struct bh_udata *udata = (struct bh_udata *)data;
-	lua_State *L = udata->L;
-	if (udata->max > 0 && udata->idx + 1 > udata->max) {
-		return BH_STOP;
-	}
-	if (udata->ref != LUA_NOREF) {
-		int top = lua_gettop(L);
-		lua_rawgeti(L, LUA_REGISTRYINDEX, udata->ref);
-		lua_pushnumber(L, x);
-		lua_pushnumber(L, y);
-		if (lua_pcall(L, 2, 1, 0) == 0) {
-			if (!lua_toboolean(L, -1)) {
-				lua_settop(L, top);
-				return BH_STOP;
-			}
-		} else {
-			return BH_STOP;
-		}
-		lua_settop(L, top);
-	}
-	udata->idx++;
-
-	lua_newtable(L);
-	lua_pushinteger(L, (lua_Integer)x);
-	lua_rawseti(L, -2, 1);
-	lua_pushinteger(L, (lua_Integer)y);
-	lua_rawseti(L, -2, 2);
-	lua_rawseti(L, -2, udata->idx + 1);
-
-	return BH_CONTINUE;
-}
 
 static int lua__gettimeofday(lua_State *L)
 {

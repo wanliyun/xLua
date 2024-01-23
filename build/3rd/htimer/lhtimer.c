@@ -224,8 +224,7 @@ static int opencls__lhtimer_mgr(lua_State *L)
 		{NULL, NULL},
 	};
 	luaL_newmetatable(L, TIMER_LOOP_CLS_NAME);
-	lua_newtable(L);
-	luaL_register(L, NULL, lmethods);
+	luaL_newlib(L, lmethods);
 	lua_setfield(L, -2, "__index");
 	lua_pushcfunction (L, lua__htimer_mgr_gc);
 	lua_setfield (L, -2, "__gc");
@@ -244,8 +243,7 @@ static int opencls__lhtimer_timer(lua_State *L)
 		{NULL, NULL},
 	};
 	luaL_newmetatable(L, TIMER_TIMER_CLS_NAME);
-	lua_newtable(L);
-	luaL_register(L, NULL, lmethods);
+	luaL_newlib(L,  lmethods);
 	lua_setfield(L, -2, "__index");
 	lua_pushcfunction (L, lua__htimer_gc);
 	lua_setfield (L, -2, "__gc");

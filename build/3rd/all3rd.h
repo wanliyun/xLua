@@ -11,49 +11,29 @@
 #include <ws2tcpip.h>
 #endif
 
-/*
-# include "astar/AStar.h"
-# include "astar/AStar.c"
-# include "astar/lastar.c"
-*/
 
 # include "lcsock.c"
 # include "ldump.c"
+# include "lmsgpack.c"
 # include "lcjson/strbuf.c"
 # include "lcjson/lcjson.c"
-# include "lmsgpack.c"
-/*# include "ludp.c" */
-# include "lfs.c"
-# include "lsinfo.c"
-
+#include "rc4/lrc4.c"
+#include "rc4/rc4.c"
+# include "lmisc.c"
+# include "luniq/handlemap.c"
+# include "luniq/luniq.c"
 # include "proc/proc.h"
 # include "proc/proc.c"
 # include "proc/lproc.c"
-
-# include "htimer/htimer.c"
-# include "htimer/lhtimer.c"
-# include "ltrace.c"
-# include "lcoredump.c"
-
-
-
-#include "luniq/handlemap.c"
-#include "luniq/luniq.c"
-
-#include "lsqlite/sqlite3.h"
-#include "lsqlite/sqlite3.c"
-#include "lsqlite/lsqlite3.c"
-
 #include "llzf/lzf_c.c"
 #include "llzf/lzf_d.c"
 #include "llzf/llzf.c"
+# include "lfs.c"
 
-#include "rc4/lrc4.c"
-#include "rc4/rc4.c"
-#include "lmisc.c"
-
+# include "lsinfo.c"
 #include "skiplist/skiplist.c"
 #include "skiplist/lskiplist.c"
+
 
 #include "sproto/sproto.c"
 #include "sproto/lsproto.c"
@@ -63,24 +43,28 @@
 #include "lpeg/lpprint.c"
 #include "lpeg/lptree.c"
 #include "lpeg/lpvm.c"
-
+# include "ltrace.c"
+# include "lcoredump.c"
 #include "llz4/lua_lz4.c"
-
 #include "lheap.c"
+
+// #include "lsqlite/lsqlite3.c"
+// #include "lsqlite/sqlite3.h"
+// #include "lsqlite/sqlite3.c"
+
+
 
 #define EXTEND_LUA_LIB_MAP(XX)            \
 	XX(lcsock, luaopen_lcsock)        \
 	XX(ldump, luaopen_ldump)          \
 	XX(msgpack, luaopen_msgpack)      \
 	XX(cjson, luaopen_cjson)          \
+	XX(lrc4, luaopen_lrc4)            \
 	XX(misc, luaopen_misc)            \
 	XX(luniq, luaopen_luniq)          \
 	XX(proc, luaopen_proc)            \
-	XX(lhtimer, luaopen_lhtimer)      \
-	XX(lsqlite3, luaopen_lsqlite3)    \
 	XX(lzf, luaopen_lzf)              \
 	XX(lfs, luaopen_lfs)              \
-	XX(lrc4, luaopen_lrc4)            \
 	XX(lsinfo, luaopen_lsinfo)        \
 	XX(lskiplist, luaopen_lskiplist)  \
 	XX(lsproto, luaopen_lsproto)      \
@@ -88,8 +72,8 @@
 	XX(ltrace, luaopen_ltrace)        \
 	XX(lcoredump, luaopen_lcoredump)  \
 	XX(llz4, luaopen_llz4)\
-	XX(lheap, luaopen_lheap)
-
+	XX(lheap, luaopen_lheap)\
+	//XX(lsqlite3, luaopen_lsqlite3)    \
 
 
 void luaopen_all3rd(lua_State *L)

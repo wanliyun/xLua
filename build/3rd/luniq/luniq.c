@@ -117,7 +117,7 @@ static int opencls__luniq(lua_State *L)
 	};
 	luaL_newmetatable(L, CLS_UNIQ);
 	lua_newtable(L);
-	luaL_register(L, NULL, lmethods);
+	luaL_newlib(L, lmethods);
 	lua_setfield(L, -2, "__index");
 	lua_pushcfunction (L, lua__uniq_gc);
 	lua_setfield (L, -2, "__gc");

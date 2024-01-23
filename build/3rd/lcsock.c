@@ -262,7 +262,7 @@ static int lua__lcs_connect(lua_State *L)
 	sock_client_t * client = CHECK_CLIENT(L, 1);
 	const char *addrstr = luaL_checkstring(L, 2);
 	const char *port =luaL_checkstring(L, 3);
-	int blockTimeMs = luaL_optint(L, 4, 5000);
+	int blockTimeMs = luaL_optinteger(L, 4, 5000);
 
 	struct addrinfo hints, *res, *res0;
 	int error, s;
@@ -524,8 +524,7 @@ static int opencls__client(lua_State *L)
 		{NULL, NULL},
 	};
 	luaL_newmetatable(L, LCS_CLIENT);
-	lua_newtable(L);
-	luaL_register(L, NULL, lmethods);
+	luaL_newlib(L, lmethods);
 	lua_setfield(L, -2, "__index");
 	lua_pushcfunction (L, lua__lcs_gc);
 	lua_setfield (L, -2, "__gc");
