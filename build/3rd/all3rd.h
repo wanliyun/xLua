@@ -48,9 +48,10 @@
 #include "llz4/lua_lz4.c"
 #include "lheap.c"
 
-// #include "lsqlite/lsqlite3.c"
-// #include "lsqlite/sqlite3.h"
-// #include "lsqlite/sqlite3.c"
+#define SQLITE_OMIT_PROGRESS_CALLBACK 1
+#include "lsqlite/sqlite3.h"
+#include "lsqlite/lsqlite3.c"
+#include "lsqlite/sqlite3.c"
 
 
 
@@ -73,7 +74,7 @@
 	XX(lcoredump, luaopen_lcoredump)  \
 	XX(llz4, luaopen_llz4)\
 	XX(lheap, luaopen_lheap)\
-	//XX(lsqlite3, luaopen_lsqlite3)    \
+	XX(lsqlite3, luaopen_lsqlite3)    \
 
 
 void luaopen_all3rd(lua_State *L)
